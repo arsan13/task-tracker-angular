@@ -1,0 +1,5 @@
+<footer>
+  <p>Copyright &copy; 2022</p>
+  <a *ngIf="hasRoute('/about')" routerLink="/">Home</a>
+  <a *ngIf="hasRoute('/')" routerLink="/about">About</a>
+</footer>
