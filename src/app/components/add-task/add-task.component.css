@@ -1,3 +1,13 @@
 .add-form {
   margin-bottom: 40px;
 }
+
+.is-invalid {
+  border-color: red;
+}
+
+.error {
+  color: red;
+  padding-left: 5px;
+  font-size: 12px;
+}

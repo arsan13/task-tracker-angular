@@ -1,33 +1,22 @@
-<form *ngIf="showAddTask" class="add-form" (ngSubmit)="onSubmit()">
+<form *ngIf="showAddTask" #f="ngForm" class="add-form" (ngSubmit)="onSubmit(f)">
+  {{ f.value | json }}
+
   <div class="form-control">
     <label for="text">Task</label>
-    <input
-      type="text"
-      name="text"
-      [(ngModel)]="text"
-      id="text"
-      placeholder="Add task"
-    />
+    <input #task="ngModel" type="text" [class.is-invalid]="task.touched && task.invalid" name="text"
+      [(ngModel)]="newTask.text" id="text" placeholder="Add task" required />
+    <span *ngIf="task.touched && task.invalid" class="error">Task name in mandatory</span>
   </div>
   <div class="form-control">
     <label for="day">Day & Time</label>
-    <input
-      type="text"
-      name="day"
-      [(ngModel)]="day"
-      id="day"
-      placeholder="Add day & time"
-    />
+    <input #day="ngModel" type="text" [class.is-invalid]="day.touched && day.invalid" name="day"
+      [(ngModel)]="newTask.day" id="day" placeholder="Add day & time" required />
+    <span *ngIf="day.touched && day.invalid" class="error">Date mandatory</span>
   </div>
   <div class="form-control form-control-check">
     <label for="reminder">Set Reminder</label>
-    <input
-      type="checkbox"
-      name="reminder"
-      [(ngModel)]="reminder"
-      id="reminder"
-    />
+    <input type="checkbox" name="reminder" [(ngModel)]="newTask.reminder" id="reminder" />
   </div>
-  <!-- {{ text }} {{ day }} {{ reminder }} -->
+
   <input type="submit" value="Save Task" class="btn btn-block" />
 </form>
